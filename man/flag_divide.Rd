@@ -7,7 +7,7 @@
 flag_divide(x)
 }
 \arguments{
-\item{f}{A vector with two items. The first item is a string of flags with several characters, the second is
+\item{x}{A vector with two items. The first item is a string of flags with several characters, the second is
 a single numerical value of the weight.}
 }
 \value{

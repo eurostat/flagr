@@ -1,7 +1,7 @@
 #' Assignment of the weights for the multiple flags
 #' @description This function is used when a single value has multiple flags. The same weight is repeated for each
 #' single character.
-#' @param f A vector with two items. The first item is a string of flags with several characters, the second is
+#' @param x A vector with two items. The first item is a string of flags with several characters, the second is
 #'  a single numerical value of the weight.
 #' @return \code{flag_divide} returns a character matrix with the flags as single characters as the first column and the weight is
 #'  repeated as the second column. The length of the list is equal to the length of the string of flags.
