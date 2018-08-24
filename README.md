@@ -2,7 +2,10 @@
 A simple R package to derive flag for aggregates
 
 ## installation
->devtools::install_github("eurostat/flagr")
+
+```R
+devtools::install_github("eurostat/flagr")
+```
 
 ## background
 A flag is an attribute of a cell in a data set that provides additional qualitative information about the statistical value of that cell. They can indicate, for example, that a given value is estimated, confidential or represents a break in the time series.
