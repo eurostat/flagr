@@ -4,7 +4,7 @@ A simple R package to derive flag for aggregates
 ## installation
 
 ```R
-devtools::install_github("eurostat/flagr")
+> devtools::install_github("eurostat/flagr")
 ```
 
 ## background
@@ -24,19 +24,22 @@ The package contains a fictive test data set(`test_data`), a wrapping function (
 Detailed documentation of the functions is in the package or see the [vignette](vignettes/flagr_introduction.pdf) for more information.
 
 ## examples
->library(tidyr)<br/>
->flags <- spread(test_data[, c(1:3)], key = time, value = flags)<br/>
+
+```R
+> library(tidyr)<br/>
+> flags <- spread(test_data[, c(1:3)], key = time, value = flags)<br/>
 >
->\#hierarchy method<br/>
->propagate_flag(flags[, c(2:ncol(flags))],"hierarchy","puebscd")<br/>
->propagate_flag(flags[, c(2:ncol(flags))],"hierarchy",c("b","c","d","e","p","s","u"))<br/>
+> \#hierarchy method<br/>
+> propagate_flag(flags[, c(2:ncol(flags))],"hierarchy","puebscd")<br/>
+> propagate_flag(flags[, c(2:ncol(flags))],"hierarchy",c("b","c","d","e","p","s","u"))<br/>
 >
->\#frequency method<br/>
->propagate_flag(flags[, c(2:ncol(flags))],"frequency")<br/>
+> \#frequency method<br/>
+> propagate_flag(flags[, c(2:ncol(flags))],"frequency")<br/>
 >
->\#weighted method<br/>
->flags<-flags[, c(2:ncol(flags))]<br/>
->weights <- spread(test_data[, c(1, 3:4)], key = time, value = values)<br/>
->weights<-weights[, c(2:ncol(weights))]<br/>
+> \#weighted method<br/>
+> flags<-flags[, c(2:ncol(flags))]<br/>
+> weights <- spread(test_data[, c(1, 3:4)], key = time, value = values)<br/>
+> weights<-weights[, c(2:ncol(weights))]<br/>
 >
->propagate_flag(flags,"weighted",flag_weights=weights,threshold=0.1)<br/>
+> propagate_flag(flags,"weighted",flag_weights=weights,threshold=0.1)<br/>
+```
