@@ -18,7 +18,7 @@ The package contains a fictive test data set(`test_data`), a wrapping function (
 * the `flag_frequency` method returns the most frequent flag for the aggregate,
 * the `flag_weighted` method returns the flag which cumulative weight is the highest.
 
-Detailed documentation of the functions is in the package.
+Detailed documentation of the functions is in the package or see the [vignette](vignettes/flagr_intraduction.pdf) for more information.
 
 ## examples
 >library(tidyr)<br/>
