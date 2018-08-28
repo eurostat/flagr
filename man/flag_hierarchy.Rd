@@ -20,6 +20,9 @@ Flag aggregation by the hierarchical inheritance method
 }
 \examples{
 \dontrun{
+flag_hierarchy(c("p","b","s","b","u","e","b"), flag_list = c("e","s","t"))
+flag_hierarchy(c("p","b","s","c","u","d"), flag_list = c("e","s","t"))
+
 library(tidyr)
 flags <- spread(test_data[, c(1:3)], key = time, value = flags)
 flag_hierarchy(flags[,4],flag_list = c("p","b","s","c","u","e","d"))
