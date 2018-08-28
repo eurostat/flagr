@@ -18,6 +18,9 @@ Flag aggregation by the frequency count method
 }
 \examples{
 \dontrun{
+flag_frequency(c("pe","b","p","p","u","e","d"))
+flag_frequency(c("pe","b","p","p","eu","e","d"))
+
 library(tidyr)
 flags <- spread(test_data[, c(1:3)], key = time, value = flags)
 flag_frequency(flags[,5])

@@ -26,6 +26,13 @@ index, quantile, etc.
 }
 \examples{
 \dontrun{
+flag_weighted(1, 
+              data.frame(f=c("pe","b","p","p","u","e","d"), stringsAsFactors = F), 
+              data.frame(w=c(10,3,7,12,31,9,54)))
+flag_weighted(1, 
+              data.frame(f=c("pe","b","p","p","up","e","d"), stringsAsFactors = F),
+              data.frame(w=c(10,3,7,12,31,9,54)))
+
 library(tidyr)
 flags <- spread(test_data[, c(1:3)], key = time, value = flags)
 weights <- spread(test_data[, c(1, 3:4)], key = time, value = values)
