@@ -26,20 +26,20 @@ Detailed documentation of the functions is in the package or see the [vignette](
 ## examples
 
 ```R
-> library(tidyr)<br/>
-> flags <- spread(test_data[, c(1:3)], key = time, value = flags)<br/>
+> library(tidyr)
+> flags <- spread(test_data[, c(1:3)], key = time, value = flags)
 >
-> \#hierarchy method<br/>
-> propagate_flag(flags[, c(2:ncol(flags))],"hierarchy","puebscd")<br/>
-> propagate_flag(flags[, c(2:ncol(flags))],"hierarchy",c("b","c","d","e","p","s","u"))<br/>
+> \#hierarchy method
+> propagate_flag(flags[, c(2:ncol(flags))],"hierarchy","puebscd")
+> propagate_flag(flags[, c(2:ncol(flags))],"hierarchy",c("b","c","d","e","p","s","u"))
 >
-> \#frequency method<br/>
-> propagate_flag(flags[, c(2:ncol(flags))],"frequency")<br/>
+> \#frequency method
+> propagate_flag(flags[, c(2:ncol(flags))],"frequency")
 >
-> \#weighted method<br/>
-> flags<-flags[, c(2:ncol(flags))]<br/>
-> weights <- spread(test_data[, c(1, 3:4)], key = time, value = values)<br/>
-> weights<-weights[, c(2:ncol(weights))]<br/>
+> \#weighted method
+> flags<-flags[, c(2:ncol(flags))]
+> weights <- spread(test_data[, c(1, 3:4)], key = time, value = values)
+> weights<-weights[, c(2:ncol(weights))]
 >
-> propagate_flag(flags,"weighted",flag_weights=weights,threshold=0.1)<br/>
+> propagate_flag(flags,"weighted",flag_weights=weights,threshold=0.1)
 ```
