@@ -22,14 +22,17 @@
 
 flag_hierarchy <- function(f,flag_list){
   f<-f[!is.na(f)]
-  f<-unique(strsplit(paste0(f,collapse = ""),split = "")[[1]])
-  if (length(intersect(f,flag_list))==0){
+  if (length(f)==0){
     return(NA)
-  } else{
-    flag_list[min(unlist(lapply(f, function(x) which(flag_list==x))))]
+  }else{
+    f<-unique(strsplit(paste0(f,collapse = ""),split = "")[[1]])
+    if (length(intersect(f,flag_list))==0){
+      return(NA)
+    } else{
+      flag_list[min(unlist(lapply(f, function(x) which(flag_list==x))))]
+    }
   }
 }
-
 
 
 

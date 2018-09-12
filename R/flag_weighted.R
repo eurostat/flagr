@@ -36,16 +36,18 @@
 flag_weighted<-function(i,f,w){
   inp<-as.data.frame(cbind(f[,i],w[,i]),stringsAsFactors = F)
   inp<-inp[!is.na(inp[,1]),]
-  out<-c()
-  if(any(nchar(inp$V1)>1)){
-    tmp1<-do.call(rbind, apply(inp,1,flag_divide))
+  if (nrow(inp)==0){
+    c(NA,NA)
+  }else{
+    if (any(nchar(inp$V1)>1)){
+      tmp1<-do.call(rbind, apply(inp,1,flag_divide))
+    }else{
+      tmp1=inp
+    }
+    rownames(tmp1)<-c()
+    tmp1<-as.data.frame(tmp1)
+    tmp1$V2<-as.numeric(as.character(tmp1$V2))
+    w_sum<-aggregate(tmp1$V2,by=list(tmp1$V1),FUN=sum) #  aggregate(V2~V1,tmp1,sum)
+    c(as.character(w_sum[order(-w_sum$x),][1,1]), as.numeric(w_sum[order(-w_sum$x),][1,2]))
   }
-  else{
-    tmp1=inp
-  }
-  rownames(tmp1)<-c()
-  tmp1<-as.data.frame(tmp1)
-  tmp1$V2<-as.numeric(as.character(tmp1$V2))
-  w_sum<-aggregate(tmp1$V2,by=list(tmp1$V1),FUN=sum) #  aggregate(V2~V1,tmp1,sum)
-  c(as.character(w_sum[order(-w_sum$x),][1,1]), as.numeric(w_sum[order(-w_sum$x),][1,2]))
 }

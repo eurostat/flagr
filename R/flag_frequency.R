@@ -19,9 +19,13 @@
 
 flag_frequency<-function(f){
   f<-f[!is.na(f)]
-  f<-strsplit(paste0(f,collapse = ""),split = "")[[1]]
-  max_count<-(sort(table(f),decreasing=T)[1])
-  names(sort(table(f),decreasing=T)[sort(table(f),decreasing=T)==max_count])
+  if (length(f)==0){
+    return(NA)
+  }else{
+    f<-strsplit(paste0(f,collapse = ""),split = "")[[1]]
+    max_count<-(sort(table(f),decreasing=T)[1])
+    names(sort(table(f),decreasing=T)[sort(table(f),decreasing=T)==max_count])
+  }
 }
 
 
