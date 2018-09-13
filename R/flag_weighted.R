@@ -34,7 +34,7 @@
 #' @importFrom stats aggregate
 
 flag_weighted<-function(i,f,w){
-  inp<-as.data.frame(cbind(f[,i],w[,i]),stringsAsFactors = F)
+  inp<-as.data.frame(cbind(as.character(f[,i]),w[,i]),stringsAsFactors = F)
   inp<-inp[!is.na(inp[,1]),]
   inp<-inp[!is.na(inp[,2]),]
   if (nrow(inp)==0){
@@ -46,7 +46,7 @@ flag_weighted<-function(i,f,w){
       tmp1=inp
     }
     rownames(tmp1)<-c()
-    tmp1<-as.data.frame(tmp1)
+    tmp1<-as.data.frame(tmp1,stringsAsFactors = F)
     tmp1$V2<-as.numeric(as.character(tmp1$V2))
     w_sum<-aggregate(tmp1$V2,by=list(tmp1$V1),FUN=sum) #  aggregate(V2~V1,tmp1,sum)
     c(as.character(w_sum[order(-w_sum$x),][1,1]), as.numeric(w_sum[order(-w_sum$x),][1,2]))

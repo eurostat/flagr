@@ -89,7 +89,7 @@ propagate_flag <- function(flags,
         flag_weights[is.na(flag_weights)] <- 0
       }
     }
-    weighted_flags<-sapply(1:ncol(flags),flag_weighted,f=as.data.frame(flags,stringsAsFactors=F),w=as.data.frame(flag_weights))
+    weighted_flags<-sapply(1:ncol(flags),flag_weighted,f=data.frame(lapply(flags,as.character),stringsAsFactors=F),w=data.frame(flag_weights))
     colnames(weighted_flags)<-colnames(flags)
     weighted_flags[,weighted_flags[2,]<threshold]<-NA
     apply(weighted_flags, 2, as.list)
