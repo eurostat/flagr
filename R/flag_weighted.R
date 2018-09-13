@@ -36,6 +36,7 @@
 flag_weighted<-function(i,f,w){
   inp<-as.data.frame(cbind(f[,i],w[,i]),stringsAsFactors = F)
   inp<-inp[!is.na(inp[,1]),]
+  inp<-inp[!is.na(inp[,2]),]
   if (nrow(inp)==0){
     c(NA,NA)
   }else{
