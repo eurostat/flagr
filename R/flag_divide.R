@@ -21,7 +21,9 @@
 
 
 flag_divide <- function(x){
-  cbind(unlist(f<-strsplit(x[1],split = "")),x[2])
+  out<-data.frame(cbind(unlist(f<-strsplit(x[1],split = "")),x[2]))
+  colnames(out)<-c("f","w")
+  return(out)
 }
 
 
