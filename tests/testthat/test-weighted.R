@@ -11,4 +11,5 @@ test_that("test of frequency method", {
   expect_equal(flag_weighted(1, data.frame(f=c(NA,"bde",NA,NA),stringsAsFactors = F), data.frame(w=c(NA,10,NA,7))),c("b","10"))
   expect_equal(flag_weighted(1, data.frame(f=c(NA,"bd",NA,"d"),stringsAsFactors = F), data.frame(w=c(NA,9,NA,7))),c("d","16"))
   expect_equal(flag_weighted(1, data.frame(f=c(NA,"bde","deu","peb"),stringsAsFactors = F), data.frame(w=c(NA,9,5,7))),c("e","21"))
+  expect_equal(flag_weighted(1, data.frame(f=c(NA,"bde","deu","peb"),stringsAsFactors = F), data.frame(w=c(NA,9,5,NA))),c("d","14"))
 })

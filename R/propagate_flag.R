@@ -80,21 +80,47 @@ propagate_flag <- function(flags,
     as.list(apply(flags,2, flag_frequency))
   }
   else if(method=="weighted"){
-    if (sum(flag_weights,na.rm=T)==0){
+    if (missing(flag_weights)){
       stop("The weights are missing.")
     }
-    else{
-      if (sum(colSums(flag_weights,na.rm = T))!=ncol(flag_weights)){
-        flag_weights<-apply(flag_weights,2,function(x) x/sum(x,na.rm=T))
-        flag_weights[is.na(flag_weights)] <- 0
+    else if (class(flag_weights)=="logical"){
+      if (is.null(colnames(flags))){
+        weighted_flags<- list(date0=list(as.character(NA),as.character(NA)))
+        weighted_flags
+      }
+      else{
+        weighted_flags<-sapply(colnames(flags),function(x) list(list(as.character(NA),as.character(NA))))
+        weighted_flags
       }
     }
-    weighted_flags<-sapply(1:ncol(flags),flag_weighted,f=data.frame(lapply(flags,as.character),stringsAsFactors=F),w=data.frame(flag_weights))
-    colnames(weighted_flags)<-colnames(flags)
-    weighted_flags[,weighted_flags[2,]<threshold]<-NA
-    apply(weighted_flags, 2, as.list)
+    else{
+      if (class(flag_weights)=="numeric"){
+        if (sum(flag_weights,na.rm=T)!=1){
+          flag_weights<-flag_weights/sum(flag_weights,na.rm=T)
+          flag_weights[is.na(flag_weights)] <- 0
+        }
+        weighted_flags<-flag_weighted(1,data.frame(flags,stringsAsFactors=F),data.frame(flag_weights))
+        weighted_flags[weighted_flags[2]<threshold]<-NA
+        if (is.null(colnames(flags))){
+          list(date0=list(weighted_flags[1],weighted_flags[2]))
+        }
+        else{
+          list(list(weighted_flags[1],weighted_flags[2]))
+        }
+      }
+      else{
+        if (sum(colSums(flag_weights,na.rm = T))!=ncol(flag_weights)){
+          flag_weights<-apply(flag_weights,2,function(x) x/sum(x,na.rm=T))
+          flag_weights[is.na(flag_weights)] <- 0
+        }
+        weighted_flags<-sapply(1:ncol(flags),flag_weighted,f=data.frame(lapply(flags,as.character),stringsAsFactors=F),w=data.frame(flag_weights))
+        colnames(weighted_flags)<-colnames(flags)
+        weighted_flags[,weighted_flags[2,]<threshold]<-NA
+        apply(weighted_flags, 2, as.list)
+      }
+    }
   }
   else {
-    stop('The method is incorrect! It should be either "hierarchy", "frequency" or "weighted"')
+    stop('The method is incorrect! It should be either "hierarchy", "frequency" or "weighted".')
   }
 }
