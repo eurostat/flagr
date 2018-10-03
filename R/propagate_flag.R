@@ -83,7 +83,7 @@ propagate_flag <- function(flags,
     if (missing(flag_weights)){
       stop("The weights are missing.")
     }
-    else if (class(flag_weights)=="logical"){
+    else if ("logical" %in% class(flag_weights)){
       if (is.null(colnames(flags))){
         weighted_flags<- list(date0=list(as.character(NA),as.character(NA)))
         weighted_flags
@@ -94,7 +94,7 @@ propagate_flag <- function(flags,
       }
     }
     else{
-      if (class(flag_weights)=="numeric"){
+      if ("numeric" %in% class(flag_weights)){
         if (sum(flag_weights,na.rm=T)!=1){
           flag_weights<-flag_weights/sum(flag_weights,na.rm=T)
           flag_weights[is.na(flag_weights)] <- 0
