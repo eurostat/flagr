@@ -55,8 +55,7 @@ flag_weighted<-function(i,f,w){
     tmp1<-as.data.frame(tmp1,stringsAsFactors = F)
     tmp1[,2]<-as.numeric(as.character(tmp1[,2]))
     w_sum<-aggregate(tmp1[,2],by=list(tmp1[,1]),FUN=sum) #  aggregate(V2~V1,tmp1,sum)
-#    c(as.character(w_sum[order(-w_sum$x),][1,1]), as.numeric(w_sum[order(-w_sum$x),][1,2]))
     max_w<-w_sum[order(-w_sum$x),][1,2]
-    c(paste0(sort(as.character(w_sum[w_sum$x==max_w,1])),collapse=","), as.numeric(max_w))
+    c(paste0(sort(as.character(w_sum[w_sum$x==max_w,1])),collapse=", "), as.numeric(max_w))
   }
 }
