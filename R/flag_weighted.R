@@ -6,9 +6,9 @@
 #' @param f A data.frame or a matrix containing the flags of the series (one column per period)
 #' @param w A data.frame or a matrix with same size and dimesion as \code{f} containing the corresponding weights
 #'  for each flags.
-#' @return \code{flag_weighted} Returns a caracter vector with the flag that has the highest weighted frequency as the first
-#' value, and the sum of weights for the given flag as the second value for the given columns of \code{f,w} defined
-#' by the parameter \code{i}.
+#' @return \code{flag_weighted} Returns a character vector with the flag that has the highest weighted frequency or multiple flags in alphabetical 
+#' order (in case there are more than one flag with the same highest weight) as the first value, and the sum of weights for the given flag(s) as 
+#' the second value for the given columns of \code{f,w} defined by the parameter \code{i}.
 #'
 #' @seealso \code{\link{flag_divide}}
 #' @examples
@@ -19,6 +19,9 @@
 #' flag_weighted(1, 
 #'               data.frame(f=c("pe","b","p","p","up","e","d"), stringsAsFactors = F),
 #'               data.frame(w=c(10,3,7,12,31,9,54)))
+#' flag_weighted(1, 
+#'               data.frame(f=c("pe",NA,"pe",NA,NA,"d"), stringsAsFactors = F),
+#'               data.frame(w=c(10,3,7,12,31,9)))
 #' 
 #' library(tidyr)
 #' flags <- spread(test_data[, c(1:3)], key = time, value = flags)
@@ -52,6 +55,8 @@ flag_weighted<-function(i,f,w){
     tmp1<-as.data.frame(tmp1,stringsAsFactors = F)
     tmp1[,2]<-as.numeric(as.character(tmp1[,2]))
     w_sum<-aggregate(tmp1[,2],by=list(tmp1[,1]),FUN=sum) #  aggregate(V2~V1,tmp1,sum)
-    c(as.character(w_sum[order(-w_sum$x),][1,1]), as.numeric(w_sum[order(-w_sum$x),][1,2]))
+#    c(as.character(w_sum[order(-w_sum$x),][1,1]), as.numeric(w_sum[order(-w_sum$x),][1,2]))
+    max_w<-w_sum[order(-w_sum$x),][1,2]
+    c(paste0(sort(as.character(w_sum[w_sum$x==max_w,1])),collapse=","), as.numeric(max_w))
   }
 }

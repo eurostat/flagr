@@ -13,8 +13,8 @@
 #' @param threshold The threshold which above the should be the waights in order the aggregate to receive a flag.
 #' Defalut value is 0.5, but can be changed to any value.
 #' @return \code{propagate_flag} returns a list with the same size as the number of periods (columns) in the flags
-#' parameter. In case of the methods is "hierarchy" or "frequency", then only the derived flag is returned. In case
-#' of weighted it returns the flag and the sum of weights if it is above the threshold, otherwise the list contains
+#' parameter. In case of the methods is "hierarchy" or "frequency", then only the derived flag(s) is returned. In case
+#' of weighted it returns the flag(s) and the sum of weights if it is above the threshold, otherwise the list contains
 #' \code{NA} where the sum of weights are below the threshold.
 #'
 #' @seealso \code{\link{flag_hierarchy}}, \code{\link{flag_frequency}}, \code{\link{flag_weighted}}

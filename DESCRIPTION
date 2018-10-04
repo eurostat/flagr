@@ -1,7 +1,7 @@
 Package: flagr
 Type: Package
 Title: Implementation of Flag Aggregation in Eurostat
-Version: 0.3.0
+Version: 0.3.1
 Author: person("Matteo", "Salvati", email = "salvati.matteo@hotmail.fr", role = c("aut", "cre"))
         person("Mátyás", "Mészáros", email = "matyas.meszaros@ec.europa.eu", role = c("aut", "cre"))
 Maintainer: Mátyás Mészáros <matyas.meszaros@ec.europa.eu>

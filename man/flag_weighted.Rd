@@ -16,9 +16,9 @@ the flag for the aggregates.}
 for each flags.}
 }
 \value{
-\code{flag_weighted} Returns a caracter vector with the flag that has the highest weighted frequency as the first
-value, and the sum of weights for the given flag as the second value for the given columns of \code{f,w} defined
-by the parameter \code{i}.
+\code{flag_weighted} Returns a character vector with the flag that has the highest weighted frequency or multiple flags in alphabetical 
+order (in case there are more than one flag with the same highest weight) as the first value, and the sum of weights for the given flag(s) as 
+the second value for the given columns of \code{f,w} defined by the parameter \code{i}.
 }
 \description{
 This method can be used when you want to derive the flag of an aggregate that is a weighted average,
@@ -32,6 +32,9 @@ flag_weighted(1,
 flag_weighted(1, 
               data.frame(f=c("pe","b","p","p","up","e","d"), stringsAsFactors = F),
               data.frame(w=c(10,3,7,12,31,9,54)))
+flag_weighted(1, 
+              data.frame(f=c("pe",NA,"pe",NA,NA,"d"), stringsAsFactors = F),
+              data.frame(w=c(10,3,7,12,31,9)))
 
 library(tidyr)
 flags <- spread(test_data[, c(1:3)], key = time, value = flags)
