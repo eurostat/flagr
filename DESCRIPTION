@@ -2,9 +2,8 @@ Package: flagr
 Type: Package
 Title: Implementation of Flag Aggregation in Eurostat
 Version: 0.3.1
-Author: person("Matteo", "Salvati", email = "salvati.matteo@hotmail.fr", role = c("aut", "cre"))
-        person("Mátyás", "Mészáros", email = "matyas.meszaros@ec.europa.eu", role = c("aut", "cre"))
-Maintainer: Mátyás Mészáros <matyas.meszaros@ec.europa.eu>
+Authors@R: c(person("Mátyás", "Mészáros", email = "matyas.meszaros@ec.europa.eu", role = c("aut", "cre")),
+            person("Matteo", "Salvati", email = "salvati.matteo@hotmail.fr", role = "aut"))
 Description: This package aims at facilitating the aggregations of flags in official statistics 
           according to different methodological guidelines using the R environnement. The package 
           offers 3 options for computing the flags for EU or other aggregates.
@@ -12,6 +11,6 @@ License: EUPL-1.1 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: stats 
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Suggests: tidyr, eurostat, knitr, rmarkdown, testthat
 VignetteBuilder: knitr
