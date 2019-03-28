@@ -4,7 +4,7 @@
 \alias{propagate_flag}
 \title{Derive flags for an aggregates using diffrent methods}
 \usage{
-propagate_flag(flags, method = "", codelist = "", flag_weights = 0,
+propagate_flag(flags, method = "", codelist = NULL, flag_weights = 0,
   threshold = 0.5)
 }
 \arguments{

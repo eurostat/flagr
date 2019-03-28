@@ -4,7 +4,7 @@ context("test-propagate.R")
 
 test_that("test of the propagate wrapper for error", {
   expect_error(propagate_flag(data.frame(f=c("pe","b","p","p","up","e","d"),stringsAsFactors = F)),"The method is incorrect! It should be either \"hierarchy\", \"frequency\" or \"weighted\".")
-  expect_error(propagate_flag(data.frame(f=c("pe","b","p","p","up","e","d"),stringsAsFactors = F),"hierarchy"),"The codelist is empty or missing.")
+  expect_error(propagate_flag(data.frame(f=c("pe","b","p","p","up","e","d"),stringsAsFactors = F),"hierarchy"),"The codelist is missing.")
   expect_error(propagate_flag(data.frame(f=c("pe","b","p","p","up","e","d"),stringsAsFactors = F),"weighted"),"The weights are missing.")
   expect_error(propagate_flag(data.frame(f=c("pe","b","p","p","up","e","d"),stringsAsFactors = F),"hierarchy","abc"),"The following flags from the data set are not in the list of hierarchy: p, e, u, d.")
 })

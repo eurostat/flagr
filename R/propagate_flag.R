@@ -38,15 +38,19 @@
 
 propagate_flag <- function(flags,
                            method = "",
-                           codelist = "",
+                           codelist = NULL,
                            flag_weights = 0,
                            threshold = 0.5){
 
   estat_flags <- c("b", "d", "f", "e", "s", "p", "n", "u")
   sdmx_flags <- c("B", "J", "S", "D", "I", "F", "E", "P", "N", "U", "V", "G", "A")
   if (method=="hierarchy") {
-    if (is.na(codelist)||codelist==""){
-      stop("The codelist is empty or missing.")
+    if (is.null(codelist)){
+      stop("The codelist is missing.")
+    } 
+    codelist<-codelist[!is.na(codelist)]
+    if (length(codelist)==0){
+      stop("The codelist is missing.")
     }
     else if (length(codelist)==1){
       if (codelist=="estat"){
