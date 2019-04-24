@@ -3,6 +3,14 @@ A simple R package to derive flag for aggregates
 
 ## installation
 
+Now 'flagr' is on [CRAN](https://CRAN.R-project.org/package=flagr) so it can be installed by 
+
+```R
+> install.packages("flagr")
+```
+
+or use the development version from GitHub
+
 ```R
 > devtools::install_github("eurostat/flagr")
 ```
@@ -29,14 +37,14 @@ Detailed documentation of the functions is in the package or see the [vignette](
 > library(tidyr)
 > flags <- spread(test_data[, c(1:3)], key = time, value = flags)
 >
-> \#hierarchy method
+> #hierarchy method
 > propagate_flag(flags[, c(2:ncol(flags))],"hierarchy","puebscd")
 > propagate_flag(flags[, c(2:ncol(flags))],"hierarchy",c("b","c","d","e","p","s","u"))
 >
-> \#frequency method
+> #frequency method
 > propagate_flag(flags[, c(2:ncol(flags))],"frequency")
 >
-> \#weighted method
+> #weighted method
 > flags<-flags[, c(2:ncol(flags))]
 > weights <- spread(test_data[, c(1, 3:4)], key = time, value = values)
 > weights<-weights[, c(2:ncol(weights))]

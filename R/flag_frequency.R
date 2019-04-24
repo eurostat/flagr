@@ -4,17 +4,14 @@
 #' @return \code{flag_frequency} returns a character with a single character flag in case the highest frequency count
 #'  is unique, or multiple character in case there are several flags with the highest frequency count.
 #' @examples
-#' \dontrun{
 #' flag_frequency(c("pe","b","p","p","u","e","d"))
 #' flag_frequency(c("pe","b","p","p","eu","e","d"))
 #'
-#' library(tidyr)
-#' flags <- spread(test_data[, c(1:3)], key = time, value = flags)
+#' 
+#' flags <- tidyr::spread(test_data[, c(1:3)], key = time, value = flags)
 #' flag_frequency(flags[,5])
 #' apply(flags[, c(2:ncol(flags))],2, flag_frequency)
-#'}
 #'
-
 #' @export
 
 flag_frequency<-function(f){

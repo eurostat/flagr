@@ -7,16 +7,12 @@
 #'  repeated as the second column. The length of the list is equal to the length of the string of flags.
 #' @seealso \code{\link{flag_weighted}}
 #' @examples
-#' \dontrun{
-#' library(tidyr)
-#' flags <- spread(test_data[, c(1:3)], key = time, value = flags)
-#' weights <- spread(test_data[, c(1, 3:4)], key = time, value = values)
-#' input <- as.data.frame(cbind(flags[,5],weights[,5]),stringsAsFactors = F)[!is.na(flags[,5]),]
+#' flags <- tidyr::spread(test_data[, c(1:3)], key = time, value = flags)
+#' weights <- tidyr::spread(test_data[, c(1, 3:4)], key = time, value = values)
+#' input <- as.data.frame(cbind(flags[,5],weights[,5]),stringsAsFactors = FALSE)[!is.na(flags[,5]),]
 #'
 #' do.call(rbind, apply(input,1,flag_divide))
-#'}
 #'
-
 #' @export
 
 

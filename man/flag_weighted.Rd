@@ -25,27 +25,26 @@ This method can be used when you want to derive the flag of an aggregate that is
 index, quantile, etc.
 }
 \examples{
-\dontrun{
 flag_weighted(1, 
-              data.frame(f=c("pe","b","p","p","u","e","d"), stringsAsFactors = F), 
+              data.frame(f=c("pe","b","p","p","u","e","d"), stringsAsFactors = FALSE), 
               data.frame(w=c(10,3,7,12,31,9,54)))
 flag_weighted(1, 
-              data.frame(f=c("pe","b","p","p","up","e","d"), stringsAsFactors = F),
+              data.frame(f=c("pe","b","p","p","up","e","d"), stringsAsFactors = FALSE),
               data.frame(w=c(10,3,7,12,31,9,54)))
 flag_weighted(1, 
-              data.frame(f=c("pe",NA,"pe",NA,NA,"d"), stringsAsFactors = F),
+              data.frame(f=c("pe",NA,"pe",NA,NA,"d"), stringsAsFactors = FALSE),
               data.frame(w=c(10,3,7,12,31,9)))
 
-library(tidyr)
-flags <- spread(test_data[, c(1:3)], key = time, value = flags)
-weights <- spread(test_data[, c(1, 3:4)], key = time, value = values)
+
+flags <- tidyr::spread(test_data[, c(1:3)], key = time, value = flags)
+weights <- tidyr::spread(test_data[, c(1, 3:4)], key = time, value = values)
 flag_weighted(7,flags[, c(2:ncol(flags))],weights[, c(2:ncol(weights))])
 
-weights<-apply(weights[, c(2:ncol(weights))],2,function(x) x/sum(x,na.rm=T))
+weights<-apply(weights[, c(2:ncol(weights))],2,function(x) x/sum(x,na.rm=TRUE))
 weights[is.na(weights)] <- 0
 flags<-flags[, c(2:ncol(flags))]
 sapply(1:ncol(flags),flag_weighted,f=flags,w=weights)
-}
+
 }
 \seealso{
 \code{\link{flag_divide}}
